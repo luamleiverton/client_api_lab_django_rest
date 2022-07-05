@@ -1,5 +1,9 @@
+import re
+from validate_docbr import CPF
+
 def cpf_valido(cpf):
-    return len(cpf) == 11
+    cpf = CPF()
+    return cpf.validate(cpf)
 
 
 def name_valido(name):
@@ -11,4 +15,8 @@ def rg_valido(rg):
 
 
 def phone_valido(phone):
-    return len(phone) >= 11
+    '''Verifica formato do celular (11 91234-9876)'''
+    modelo = '[0-9]{2} [0-9]{5}-[0-9]{4}'
+    resposta = re.findall(modelo, phone)
+    return resposta
+
